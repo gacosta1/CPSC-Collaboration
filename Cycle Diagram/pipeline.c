@@ -8,6 +8,9 @@ int main(int argc, char *argv[]){
 		fprintf(stderr, "Usage: %s <input.txt>\n", argv[0]);
 		exit(0);
 	}
+
+	char *instr[] = {"IF", "ID", "EX", "DM", "WB"};
+	int size = (int)(sizeof(instr)/sizeof(*instr));
 	
 	char *input;
 	char line[READ_NUM];
@@ -36,6 +39,14 @@ int main(int argc, char *argv[]){
 		fprintf(stderr, "ERROR: Could not open the file\n");
 		exit(0);
 	}
+
+	printf("\nThe size of the pointer array is: %d\n\n", size);
+
+	int i;
+	for(i = 0; i < size; i++)
+		printf("%s ", instr[i]);
+	
+	printf("\n\n");
 
 	return 0;
 }
