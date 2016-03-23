@@ -1,6 +1,0 @@
-add r3,r1,r2
-sub r4,r3,r2
-add r5,r2,r4
-lw  r6,0(r1)
-sub r7,r6,r3
-sw  r7,0(r1)
