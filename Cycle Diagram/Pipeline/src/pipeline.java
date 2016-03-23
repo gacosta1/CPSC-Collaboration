@@ -15,14 +15,10 @@ public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 	
 		String localFile = null;
-		
-		String[] pipe = {"IF", "ID", "EX", "DM", "WB"};
-				
+						
 		Scanner scan = new Scanner(System.in);
 		String local = args[0];
 		String fileName = local;
-		
-
 
 		try {
 			FileReader fileReader = new FileReader(fileName);
@@ -77,16 +73,16 @@ public static void main(String[] args) {
 			}
 			
 			System.out.println();
+			
 			String norm = "  IF ID EX DM WB";
 			String stall1 = "  IF    ID EX DM WB"; //2 before
 			String stall2 = "  IF       ID EX DM WB"; //1 before;
 			String space = " ";
 			String stallSpace1 = "   ";
 			String stallSpace2 = "      ";
-			int k;
-			int h;
-			int flag1 = 0;
-			int flag2 = 0;
+			int k, h;
+			int flag1 = 0, flag2 = 0;
+			
 		for(int i = 0; i < arr.size(); i++){
 			for(int j = 0; j < arr.get(i).size(); j++){
 				System.out.print(arr.get(i).get(j));
@@ -106,37 +102,50 @@ public static void main(String[] args) {
 				
 			}
 			
+			// start out printing out the pipe stages with no stalls
 			if(i == 0)
 				System.out.println(norm);
 				
+			// if the second line uses a destination register before it
+			// then print out two stalls spaces or else print a normal
+			// pipe stage
 			if(i == 1){
 				if(arr.get(i).get(0).contains("add") || arr.get(i).get(0).contains("sub")) {
+					
 					for(k=0;k<flag2;k++) {
 						System.out.print(stallSpace2);
 					}
+					
 					if(arr.get(i-1).get(1).contains(arr.get(i).get(2)) || arr.get(i-1).get(1).contains(arr.get(i).get(3))){
 						flag2++;
 						System.out.println(stall2);
 					}
+					
 					else{
 						System.out.println(norm);
 					}
 				}
 	
 				if(arr.get(i).get(0).contains("sw") || arr.get(i).get(0).contains("lw")) {
+					
 					for(k=0;k<flag2;k++) {
 						System.out.print(stallSpace2);
 					}
+					
 					if(arr.get(i-1).get(1).contains(arr.get(i).get(1))){
 						flag2++;
 						System.out.println(stall2);
 						
 					}
+					
 					else
 						System.out.println(norm);
 				}
 			}
 			
+			// if the third or more lines use a destination register before it
+			// or 2 lines before then print out either one or two stall spaces
+			// or else print a normal pipe stage
 			if(i > 1){
 				if(arr.get(i).get(0).contains("add") || arr.get(i).get(0).contains("sub")) {
 					for(k=0;k<flag2;k++) {
@@ -149,25 +158,17 @@ public static void main(String[] args) {
 					if(arr.get(i-1).get(1).contains(arr.get(i).get(2)) || arr.get(i-1).get(1).contains(arr.get(i).get(3))){
 						flag2++;
 						System.out.println(stall2);
-						//System.out.println("2: " + flag2);
-						
 					}	
 					else if(arr.get(i-2).get(1).contains(arr.get(i).get(2)) || arr.get(i-2).get(1).contains(arr.get(i).get(3))){
 						flag1++;
 						System.out.println(stall1);
-						//System.out.println("1: " + flag1);
-
-						
 					}	
 					else {
 						System.out.println(norm);
-
 					}
-					
-				
 				}
-
-				else if(arr.get(i).get(0).contains("sw") || arr.get(i).get(0).contains("lw")) {
+				
+				else if(arr.get(i).get(0).contains("sw") || arr.get(i).get(0).contains("lw")){
 					for(k=0;k<flag2;k++) {
 						System.out.print(stallSpace2);
 					}
@@ -178,28 +179,20 @@ public static void main(String[] args) {
 					if(arr.get(i).get(1).contains(arr.get(i-1).get(1))){
 						flag2++;
 						System.out.println(stall2);
-
 					}
 					else if(arr.get(i).get(1).contains(arr.get(i-2).get(1))){
 						flag1++;
 						System.out.println(stall1);
-
 					}
 					else{
 						System.out.println(norm);
-					}
-					
+					}	
 				}
-			}
-
-					
+			}			
 		}
-		
-
-				
+	
 		System.out.println();
-		
-			
+				
 		bufferedReader.close();
 		} catch (FileNotFoundException ex) {
 			System.out.println("Unable to open file '" + fileName + "'");

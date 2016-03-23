@@ -1,0 +1,8 @@
+add r3,r1,r2
+add r3,r3,r1
+sub r4,r3,r2
+sub r5,r1,r2
+lw  r6,0(r1)
+sub r7,r3,r5
+add r8,r4,r3
+sw  r8,0(r1)
