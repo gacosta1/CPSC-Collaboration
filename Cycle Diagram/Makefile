@@ -1,7 +1,7 @@
 java= javac
-
-FILE= comp test1 test2 test3 test4 test5
 TEST= java
+
+FILE= comp test1 test2 test3 test4 test5\
 OBJ= pipeline.class
 BIN= pipeline
 
