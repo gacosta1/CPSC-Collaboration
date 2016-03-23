@@ -5,8 +5,6 @@ TEST= java
 OBJ= pipeline.class
 BIN= pipeline
 
-
-
 all: $(FILE) clean
 
 comp:
