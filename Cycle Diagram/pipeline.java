@@ -192,13 +192,13 @@ public static void main(String[] args) throws java.io.IOException {
 						System.out.println(norm);
 					}	
 				}
-				else if((arr.get(i).get(0).contains("add") || arr.get(i).get(0).contains("sub")) &&
-				((arr.get(i-1).get(0).contains("sw") || (arr.get(i-1).get(0).contains("sw"))))) {
-					if(arr.get(i).get(2).contains(arr.get(i-1).get(1)) || (arr.get(i).get(3).contains(arr.get(i-1).get(1))))
-						System.out.println(stall2);
-					else
-						System.out.println(norm);
-				}
+// 				else if((arr.get(i).get(0).contains("add") || arr.get(i).get(0).contains("sub")) &&
+// 				((arr.get(i-1).get(0).contains("sw") || (arr.get(i-1).get(0).contains("sw"))))) {
+// 					if(arr.get(i).get(2).contains(arr.get(i-1).get(1)) || (arr.get(i).get(3).contains(arr.get(i-1).get(1))))
+// 						System.out.println(stall2);
+// 					else
+// 						System.out.println(norm);
+// 				}
 			}			
 		}
 	} 
