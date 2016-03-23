@@ -14,20 +14,19 @@ public class pipeline {
 	static List<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
 	
 public static void main(String[] args) throws java.io.IOException {	
-		String strHold = null;
-
-        Scanner sc = new Scanner(System.in);
+		String strHold = null; //buffer to hold lines as they are read in
+        Scanner sc = new Scanner(System.in); //scanner to read in from stdio
 		    
 		while(sc.hasNext()){
-		strHold = sc.nextLine();
-// 		System.out.println(strHold);
+		strHold = sc.nextLine(); //read in line by line
 		
-			ArrayList<String> info = new ArrayList<String>();
-			String instr = null;
-			String src1 = null;
-			String src2 = null;
-			String dest = null;
+			ArrayList<String> info = new ArrayList<String>(); //creates arrayList of data
+			String instr = null; //instruction to be put in arrayList
+			String src1 = null; //first source to be put in arrayList
+			String src2 = null; //Second source to be put in arrayList
+			String dest = null; //Destination register to be put in arrayList
 			
+			//Parsing of each line into arrayList of arrayLists(which contain line data)
 			if(strHold.contains("add")){
 				instr = strHold.substring(0, 4);
 				dest = strHold.substring(4,6);
@@ -65,16 +64,15 @@ public static void main(String[] args) throws java.io.IOException {
 			}
 			
 			arr.add(info);
-		}
+		} //endwhile
 		
-// 		System.out.println();
 		
-		String norm = "  IF ID EX DM WB";
-		String stall1 = "  IF    ID EX DM WB"; //2 before
-		String stall2 = "  IF       ID EX DM WB"; //1 before;
-		String space = " ";
-		String stallSpace1 = "   ";
-		String stallSpace2 = "      ";
+		String norm = "  IF ID EX DM WB"; //normal output (no stalls)
+		String stall1 = "  IF    ID EX DM WB"; //dependencies fall two lines before current, 1 stall
+		String stall2 = "  IF       ID EX DM WB"; //dependencies fall one line before current, 2 stalls
+		String space = " "; //accounts for space between cycles in output
+		String stallSpace1 = "   "; //accounts for one stall in previous cycles
+		String stallSpace2 = "      "; //accounts for two stalls in previous cycles
 		int k, h;
 		int flag1 = 0, flag2 = 0;
 		
@@ -82,20 +80,21 @@ public static void main(String[] args) throws java.io.IOException {
 			for(int j = 0; j < arr.get(i).size(); j++){
 				System.out.print(arr.get(i).get(j));
 				if(j != (arr.get(i).size()) -1 && (j != 0)){
-					System.out.print(",");
-				}
+					System.out.print(","); //formatting of output
+				}						   //prints out info in list of arrayLists
 			}
 		
 			// these two for loops print out the correct amount of space
 			// before each iterations of the instructions fetched
+			
 			if(i>0) {
 				for(h=0;h<i;h++){
-					System.out.print(space);	
+					System.out.print(space);	//prints out a space for each concurrent space between cycles
 				}
 			}
 		
 			for(k = 0; k < i*2; k++) {
-				System.out.print(space);
+				System.out.print(space);	//prints out two spaces at beginning of each output line
 			
 			}
 		
