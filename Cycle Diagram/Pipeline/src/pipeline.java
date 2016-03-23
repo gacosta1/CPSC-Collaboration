@@ -91,6 +91,8 @@ public static void main(String[] args) {
 				}
 			}
 			
+			// these two for loops print out the correct amount of space
+			// before each iterations of the instructions fetched
 			if(i>0) {
 				for(h=0;h<i;h++){
 					System.out.print(space);	
@@ -155,14 +157,17 @@ public static void main(String[] args) {
 						System.out.print(stallSpace1);
 					}
 					
+					// if a destination register is used before then make two stall spaces
 					if(arr.get(i-1).get(1).contains(arr.get(i).get(2)) || arr.get(i-1).get(1).contains(arr.get(i).get(3))){
 						flag2++;
 						System.out.println(stall2);
 					}	
+					// if a destination register is used 2 lines before then make one stall space
 					else if(arr.get(i-2).get(1).contains(arr.get(i).get(2)) || arr.get(i-2).get(1).contains(arr.get(i).get(3))){
 						flag1++;
 						System.out.println(stall1);
 					}	
+					// else just print out the normal stages
 					else {
 						System.out.println(norm);
 					}
@@ -176,14 +181,18 @@ public static void main(String[] args) {
 						System.out.print(stallSpace1);
 					}
 					
+					// if a destination register is used before then make two stall spaces
+
 					if(arr.get(i).get(1).contains(arr.get(i-1).get(1))){
 						flag2++;
 						System.out.println(stall2);
 					}
+					// if a destination register is used 2 lines before then make one stall space
 					else if(arr.get(i).get(1).contains(arr.get(i-2).get(1))){
 						flag1++;
 						System.out.println(stall1);
 					}
+					// else just print out the normal stages
 					else{
 						System.out.println(norm);
 					}	
